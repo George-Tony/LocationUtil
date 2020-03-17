@@ -21,21 +21,24 @@ public class LocationUtil {
     private static LocationUtil locationUtil = null;
     Context context;
 
+    public LocationUtil(Context context) {
+        this.context = context;
+    }
 
-    private static LocationUtil getInstance() {
+    /* private static LocationUtil getInstance() {
         if (locationUtil == null)
             locationUtil = new LocationUtil();
 
         return locationUtil;
-    }
+    }*/
 
-    public static boolean isLocationActivated() {
-        if (ContextCompat.checkSelfPermission(getInstance().context, Manifest.permission_group.LOCATION) !=
+    public boolean isLocationActivated() {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission_group.LOCATION) !=
                 PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getInstance().context, "Location permission not granted.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Location permission not granted.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        LocationManager lm = (LocationManager) getInstance().context.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         boolean gps_enabled = false;
         boolean network_enabled = false;
 
@@ -57,12 +60,12 @@ public class LocationUtil {
 
         if (!gps_enabled && !network_enabled) {
             // notify user
-            new AlertDialog.Builder(getInstance().context)
+            new AlertDialog.Builder(context)
                     .setMessage(R.string.gps_network_not_enabled)
                     .setPositiveButton(R.string.open_location_settings, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                            getInstance().context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                            context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                         }
                     })
                     .setNegativeButton(R.string.Cancel, null)
