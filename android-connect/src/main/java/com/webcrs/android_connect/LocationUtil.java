@@ -29,11 +29,11 @@ public class LocationUtil {
         return locationUtil;
     }
 
-    public static void isLocationActivated() {
+    public static boolean isLocationActivated() {
         if (ContextCompat.checkSelfPermission(getInstance().context, Manifest.permission_group.LOCATION) !=
                 PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(getInstance().context, "Location permission not granted.", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
         LocationManager lm = (LocationManager) getInstance().context.getSystemService(Context.LOCATION_SERVICE);
         boolean gps_enabled = false;
@@ -68,6 +68,8 @@ public class LocationUtil {
                     .setNegativeButton(R.string.Cancel, null)
                     .show();
         }
+
+        return gps_enabled;
     }
 
 }
