@@ -33,8 +33,9 @@ public class LocationUtil {
     }*/
 
     public boolean isLocationActivated() {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission_group.LOCATION) !=
-                PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(context,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(context, "Location permission not granted.", Toast.LENGTH_SHORT).show();
             return false;
         }
