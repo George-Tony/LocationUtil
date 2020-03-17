@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gps_network_not_enabled">Gps is not enabled</string>
+    <string name="open_location_settings">Open Location setiings</string>
+    <string name="Cancel">Cancel</string>
+</resources>
